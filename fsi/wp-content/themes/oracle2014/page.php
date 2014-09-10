@@ -83,34 +83,36 @@
 					<div class="hidden-xs">
 						<h3>Related Themes</h3>
 <?php
-/*$args = array(
-	'post_type' 			=> $postType,
-	'category_name' 		=> $category,	
-	'author'				=> $author_id,
-	'posts_per_page' 		=> $numPosts,
-	'paged'          		=> $page,	
-	'orderby'   			=> 'date',
-	'order'     			=> 'DESC',
-	'post_status' 			=> 'publish',
-	'ignore_sticky_posts' 	=> true,
-);*/
 
+//We need to find out whether or not this post have posts in the 
+//categories. If they do, we will display a cta so that we can filter
+//the post. Eg. by video, brochures, white-paper etc.
 
-$argsx = array(
+$post_name="";
+if(isset($post->post_name)){
+	$post_name = $post->post_name;
+}
+
+$cats_args = array(
 	'post_type' 			=> 'post',
-	'category_name' 		=> 'service-innovation',	
+	'category_name' 		=> $post_name,	
 	'post_status' 			=> 'publish',
 	'ignore_sticky_posts' 	=> true,
 );
 
+$cats = query_posts($cats_args);
+$available_cats = array();
+foreach($cats as $cat){
 
-/*Array ( [post_type] => post [category_name] => service-innovation [author] => [posts_per_page] => 999 [paged] => 1 [orderby] => date [order] => DESC [post_status] => publish [ignore_sticky_posts] => 1 [tag] => )**/
+	$resource_meta = get_post_meta($cat->ID);
 
-$cats = query_posts($argsx);
+	if(isset($resource_meta['resource_type'][0])){
+		if(!in_array($resource_meta['resource_type'][0], $available_cats)){
+			$available_cats[] = $resource_meta['resource_type'][0];
+		}
+	}
 
-
-
-//echo "<pre>".print_r($cats,TRUE)."</pre>";
+}
 
 
 ?>
@@ -118,32 +120,69 @@ $cats = query_posts($argsx);
 							<li><a href="/fsi/service-innovation/#anchor" <?php if($_SERVER['REQUEST_URI'] == "/fsi/service-innovation/"){ ?>class="active"<?php } ?>>Service Innovation (<?=count_cat_post('Service Innovation');?>)</a>
 							
 								<ul class="list-unstyled related-types first">
+									<?php if(in_array('brochure', $available_cats)): ?>
 									<li class="filter" data-filter=".brochure">Brochure</li>
+									<?php endif; ?>
+
+									<?php if(in_array('white-paper', $available_cats)): ?>
 									<li class="filter" data-filter=".white-paper">White Paper</li>
+									<?php endif; ?>
+
+									<?php if(in_array('webcast', $available_cats)): ?>
 									<li class="filter" data-filter=".webcast">Webcast</li>
+									<?php endif; ?>
+
+									<?php if(in_array('video', $available_cats)): ?>
 									<li class="filter" data-filter=".video">Video</li>
+									<?php endif; ?>
+
 									<li class="filter" data-filter="all">View All</li>
 								</ul>
 								
 							</li>
 							<li><a href="/fsi/business-transformation/#anchor" <?php if($_SERVER['REQUEST_URI'] == "/fsi/business-transformation/"){ ?>class="active"<?php } ?>>Business Transformation (<?=count_cat_post('Business Transformation');?>)</a>
 							
+
 								<ul class="list-unstyled related-types second">
+									<?php if(in_array('brochure', $available_cats)): ?>
 									<li class="filter" data-filter=".brochure">Brochure</li>
+									<?php endif; ?>
+
+									<?php if(in_array('white-paper', $available_cats)): ?>
 									<li class="filter" data-filter=".white-paper">White Paper</li>
+									<?php endif; ?>
+
+									<?php if(in_array('webcast', $available_cats)): ?>
 									<li class="filter" data-filter=".webcast">Webcast</li>
+									<?php endif; ?>
+
+									<?php if(in_array('video', $available_cats)): ?>
 									<li class="filter" data-filter=".video">Video</li>
+									<?php endif; ?>
+
 									<li class="filter" data-filter="all">View All</li>
 								</ul>
 								
 							</li>
 							<li><a href="/fsi/regulatory-mastery/#anchor" <?php if($_SERVER['REQUEST_URI'] == "/fsi/regulatory-mastery/"){ ?>class="active"<?php } ?>>Regulatory Mastery (<?=count_cat_post('Regulatory Mastery');?>)</a>
-							
+
 								<ul class="list-unstyled related-types third">
+									<?php if(in_array('brochure', $available_cats)): ?>
 									<li class="filter" data-filter=".brochure">Brochure</li>
+									<?php endif; ?>
+
+									<?php if(in_array('white-paper', $available_cats)): ?>
 									<li class="filter" data-filter=".white-paper">White Paper</li>
+									<?php endif; ?>
+
+									<?php if(in_array('webcast', $available_cats)): ?>
 									<li class="filter" data-filter=".webcast">Webcast</li>
+									<?php endif; ?>
+
+									<?php if(in_array('video', $available_cats)): ?>
 									<li class="filter" data-filter=".video">Video</li>
+									<?php endif; ?>
+
 									<li class="filter" data-filter="all">View All</li>
 								</ul>
 							
@@ -192,28 +231,6 @@ $cats = query_posts($argsx);
 				<?=the_content(); ?>
 			</div>
 		</div><!-- /.main-content -->
-
-
-		<?php 
-$argsx = array(
-	'post_type' 			=> 'post',
-	'category_name' 		=> 'service-innovation',	
-	'post_status' 			=> 'publish',
-	'ignore_sticky_posts' 	=> true,
-);
-
-
-/*Array ( [post_type] => post [category_name] => service-innovation [author] => [posts_per_page] => 999 [paged] => 1 [orderby] => date [order] => DESC [post_status] => publish [ignore_sticky_posts] => 1 [tag] => )**/
-
-$cats = query_posts($argsx);
-
-foreach($cats as $cat){
-	//print_r(get_post_meta($cat->ID));
-	//echo "<pre>".print_r(get_post_meta($cat->ID),TRUE)."</pre>";
-}
-
-//echo "<pre>".print_r($cats,TRUE)."</pre>";
-		?>
 
 	
 	</div><!-- /.container -->	
