@@ -48,7 +48,7 @@
 
                 <div class="cw21handle">
                     <ul class="cw21navigation">
-                        <li class="cw21help"><a href="#cw21-calltab">Call</a></li>
+                        <li class="cw21help"><a href="#cw21-calltab">Call<b></b></a></li>
                         <li class="cw21chat"><div data-lbl="chat-widget" id="atgchat-flyout"><a target="_blank" href="https://apps.instantservice.com/OracleChat/?wvurl=https%3A%2F%2Fc-603.estara.com%2FUI%2Fgui.php&wvpost=YToxOntzOjEzOiJvcHRpb25hbGRhdGE1IjtzOjY0OiJQcmltYXZlcmEgRW50ZXJwcmlzZSBQcm9qZWN0IFBvcnRmb2xpbyBNYW5hZ2VtZW50IChQUE0pIHwgT3JhY2xlIjt9&wvsplashurl=https%3A%2F%2Fapps.instantservice.com%2FOracleChat%2F">Chat<b></b></a><!--— spacer —--></div></li>
 
                     </ul>

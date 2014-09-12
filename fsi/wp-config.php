@@ -17,6 +17,7 @@
 switch($_SERVER['HTTP_HOST']) {
     case 'www.oracle-eppm.local':
     case 'oracle-eppm.local':
+    case 'dev.oracle-eppm.com':
     case 'dev.fsi':
         define('ENVIRONMENT', 'development');
         break;
@@ -30,6 +31,7 @@ switch($_SERVER['HTTP_HOST']) {
 }
 
 
+
 if (defined('ENVIRONMENT')){
     switch (ENVIRONMENT){
         case 'development':
@@ -41,9 +43,11 @@ if (defined('ENVIRONMENT')){
             define('DB_PASSWORD', '');
             
         }else{
-            define('DB_NAME', 'oracle_fsi');
-            define('DB_USER', 'ora_us3r');
-            define('DB_PASSWORD', 'yANjKu32bH6WfNKu');
+            define('DB_NAME', 'oracle_fsi_dev');
+            //define('DB_USER', 'ora_us3r');
+            //define('DB_PASSWORD', 'yANjKu32bH6WfNKu');
+            define('DB_USER', 'admin');
+            define('DB_PASSWORD', 'XKRg@_YRFfA8vboRe<k');
         }
 //            define('WP_DEBUG', true);
 //            error_reporting(E_ALL);

@@ -87,7 +87,7 @@
                     $('.cw21chat a').click(function(event){
                         event.preventDefault();
 
-                        window.open($(this).attr('href'), "Chat", "width=200, height=100");
+                        window.open($(this).attr('href'), "Chat", "width=400, height=600");
 
                     });
 

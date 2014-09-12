@@ -1,5 +1,7 @@
 <?php
 
+exit('whoo');
+
 //define('DEFAULT_PAGE', 'homepage.php');
 
 $request_url_no_query_str = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -10,11 +12,13 @@ $parts = array_filter($parts);
 if(empty($parts)){
 
 //    require_once DEFAULT_PAGE;
+    echo "you are here"; exit;
     require_once 'eppm/index.php';
 
 //    header('Location: /eppm/', true, 301);
 
 } else {
+    echo "you are here 2"; exit;
 
     /**
      * Front to the WordPress application. This file doesn't do anything, but loads
